@@ -4,34 +4,55 @@ import {
   Landing,
   Register,
   Login,
-  DashBoardLayout,
+  DashboardLayout,
   Error,
+  AddJob,
+  AllJobs,
+  Stats,
+  Profile,
+  Admin,
 } from "./pages";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout />,
-    errorElement: <Error/>,
+    errorElement: <Error />,
     children: [
       {
         index: true,
         element: <Landing />,
       },
       {
-        path: "/register",
+        path: "register",
         element: <Register />,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login />,
       },
       {
-        path: "/dashboard",
-        element: <DashBoardLayout />,
-      },
-      {
-        path: "/error",
-        element: <Error />,
+        path: "dashboard",
+        element: <DashboardLayout />,
+        children: [
+          {
+            index: true,
+            element: <AddJob />,
+          },
+          { path: "stats", element: <Stats /> },
+          {
+            path: "all-jobs",
+            element: <AllJobs />,
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+          },
+          {
+            path: "admin",
+            element: <Admin />,
+          },
+        ],
       },
     ],
   },
@@ -40,4 +61,5 @@ const router = createBrowserRouter([
 const App = () => {
   return <RouterProvider router={router} />;
 };
+
 export default App;
